@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{personForm.as_p}}
+
+        <input type="submit" value="Save Information">
+    </form>
+{% endblock content %}

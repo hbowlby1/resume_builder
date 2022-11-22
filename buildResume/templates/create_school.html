@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Add your Education Experience</h1>
+<p>If you have none go ahead and click save school</p>
+    <form method="post">
+        {% csrf_token %}
+        <!--School form handler-->
+        <button type='button' hx-get="{% url 'create-school-form' %}" hx-target='#schoolForm', hx-swap='beforeend'>Add School</button>
+        <input type="submit" value="Save School">
+        
+        <div id='schoolForm'></div>
+
+    </form>
+{% endblock content %}
