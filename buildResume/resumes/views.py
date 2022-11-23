@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponsePermanentRedirect
 
 
 from django.views.generic import TemplateView
 
 from django.urls import reverse_lazy, reverse
 
-from .models import (Person, Education)
-from .forms import (SchoolForm, PersonForms)
+from .models import (Person, Education, Jobs)
+from .forms import (SchoolForm, PersonForms, JobForm)
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -20,7 +20,7 @@ def createPerson(request):
         if personForm.is_valid():
             person = personForm.save(commit=False)
             person.save()
-            return HttpResponseRedirect(f'/person/{person.id}/school/')
+            return HttpResponsePermanentRedirect(f'/person/{person.id}/school/')
         else:
             return render(request, "person_form.html", context={
                 "personForm": personForm
@@ -42,7 +42,7 @@ def createSchool(request, pk):
           school = schoolForm.save(commit=False)
           school.person = person
           school.save()
-          return HttpResponse("success")
+          return HttpResponsePermanentRedirect(f'/person/{person.id}/jobs')
         else:
             return render(request, "partials/school_form.html", context={
                 "schoolForm": schoolForm
@@ -63,3 +63,34 @@ def createSchoolForm(request):
         'schoolForm': schoolForm
     }
     return render(request, 'partials/school_form.html', context)
+
+def createJob(request, pk):
+    person = Person.objects.get(id=pk)
+    jobs = Jobs.objects.filter(person=person)
+    jobForm = JobForm(request.POST or None)
+
+    if request.method == "POST":
+        if jobForm.is_valid():
+            job = jobForm.save(commit=False)
+            job.person = person
+            job.save()
+            return HttpResponse("Job Saved")
+        else:
+            return render(request, "partials/job_form.html", context={
+                "jobForm": jobForm
+            })
+        
+    context ={
+        "jobForm": jobForm,
+        "person": person,
+        "job": jobs,
+    }
+
+    return render(request, "create-job.html", context)
+
+def createJobForm(request):
+    jobForm = JobForm()
+    context = {
+        'jobForm': jobForm
+    }
+    return render(request, 'partials/job_form.html', context)

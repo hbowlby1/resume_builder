@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Add your Job Experience</h1>
+<p>If you have none go ahead and click save job</p>
+    <form method="post">
+        {% csrf_token %}
+        <!--School form handler-->
+        <button type='button' hx-get="{% url 'create-job-form' %}" hx-target='#jobForm', hx-swap='beforeend'>Add Job</button>
+        
+        <div id='jobForm'></div>
+
+    </form>
+{% endblock content %}

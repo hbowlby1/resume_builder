@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import (Person, Education)
+from .models import (Person, Education, Jobs)
 
 class PersonForms(forms.ModelForm):
     class Meta:
@@ -24,4 +24,15 @@ class SchoolForm(forms.ModelForm):
             'major',
             'year_start',
             'year_graduated',
+        )
+
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = Jobs
+        fields = (
+            'job_title',
+            'employer',
+            'year_started',
+            'year_end',
+            'job_description',
         )

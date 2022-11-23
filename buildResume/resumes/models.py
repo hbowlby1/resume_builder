@@ -21,3 +21,13 @@ class Education(models.Model):
     year_start = models.CharField(max_length=4, help_text='YYYY', null=True, blank=True)
     year_graduated = models.CharField(max_length=4, help_text='YYYY', null=True, blank=True)
 
+    def __str__(self):
+        return f"({self.person.first_name}), {Education.school_name}"
+
+class Jobs(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    job_title = models.CharField(max_length=200, blank=True, null=True)
+    employer = models.CharField(max_length=200, blank=True, null=True)
+    year_started = models.CharField(max_length=8, help_text='MM/YYYY', blank=True, null=True)
+    year_end = models.CharField(max_length=8, help_text='MM/YYYY', blank=True, null=True)
+    job_description = models.TextField(null=True, blank=True)

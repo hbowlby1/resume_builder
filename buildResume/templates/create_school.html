@@ -8,9 +8,8 @@
         {% csrf_token %}
         <!--School form handler-->
         <button type='button' hx-get="{% url 'create-school-form' %}" hx-target='#schoolForm', hx-swap='beforeend'>Add School</button>
-        <input type="submit" value="Save School">
         
         <div id='schoolForm'></div>
-
     </form>
+    <a href="{% url 'create-job' person.id%}">Add Job Experience</a>
 {% endblock content %}
