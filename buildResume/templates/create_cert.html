@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Add any certificates you may have</h1>
+<p>If you have none go ahead and click save certificate</p>
+    <form method="post">
+        {% csrf_token %}
+        <!--School form handler-->
+        <button type='button' hx-get="{% url 'create-cert-form' %}" hx-target='#certForm', hx-swap='beforeend'>Add Certificate</button>
+        
+        <div id='certForm'></div>
+    </form>
+    {% comment %} create url button for developing pdf {% endcomment %}
+{% endblock content %}

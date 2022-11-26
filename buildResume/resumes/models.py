@@ -22,7 +22,7 @@ class Education(models.Model):
     year_graduated = models.CharField(max_length=4, help_text='YYYY', null=True, blank=True)
 
     def __str__(self):
-        return f"({self.person.first_name}), {Education.school_name}"
+        return f"({self.person.first_name}), {self.school_name}"
 
 class Jobs(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
@@ -31,3 +31,15 @@ class Jobs(models.Model):
     year_started = models.CharField(max_length=8, help_text='MM/YYYY', blank=True, null=True)
     year_end = models.CharField(max_length=8, help_text='MM/YYYY', blank=True, null=True)
     job_description = models.TextField(null=True, blank=True)
+
+class Skills(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    skill_name = models.CharField(max_length=200, null=True, blank=True)
+
+class Certificates(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    cert_name = models.CharField(max_length=200, blank=True, null=True)
+    cert_url = models.URLField(null=True, blank = True)
+    cert_author = models.CharField(max_length=200, null=True, blank=True)
+    year_awarded = models.CharField(max_length=8, help_text='MM/YYYY', blank=True, null=True)
+    year_expired = models.CharField(max_length=8, help_text='MM/YYYY', blank=True, null=True)
