@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-
 from django.views.generic import TemplateView
 
-from django.urls import reverse_lazy, reverse
+from django_weasyprint import WeasyTemplateResponseMixin
+from django_weasyprint.views import WeasyTemplateResponse
+from django_weasyprint.utils import django_url_fetcher
 
 from .models import (Person, Education, Jobs, Skills, Certificates)
 from .forms import (SchoolForm, PersonForms, JobForm, SkillForm, CertForm)
@@ -156,3 +157,26 @@ def createCertForm(request):
         'certForm': certForm
     }
     return render(request, 'partials/cert_form.html', context)
+
+# pdf generation
+def getUserData(request, pk):
+    #get all of the objects and connect
+    getPerson = Person.objects.get(id=pk)
+    getEducation = Education.objects.filter(person=getPerson).values()
+    getJobs = Jobs.objects.filter(person=getPerson).values()
+    getSkills = Skills.objects.filter(person=getPerson).values()
+    getCerts = Certificates.objects.filter(person=getPerson).values()
+
+    #context that holds all of the user data
+    context = {
+        'person': getPerson,
+        'education': getEducation,
+        'jobs': getJobs,
+        'skills': getSkills,
+        'certs': getCerts
+    }
+    # for loops that run through the objects and saves their values
+    #education
+    
+    return render(request, 'pdf-create.html', context)
+    

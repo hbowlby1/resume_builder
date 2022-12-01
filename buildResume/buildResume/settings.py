@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     #3rd party
     'django_htmx',
+    'wkhtmltopdf',
 ]
 
 MIDDLEWARE = [

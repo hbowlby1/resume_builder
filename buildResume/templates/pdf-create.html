@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>User Data</h1>
+    {{person.first_name}}
+    {{person.last_name}}
+    {{person.street}}
+    {{person.city}}
+    {{person.state}}
+    {{person.zipCode}}
+
+    {% for e in education %}
+        <ul>
+            <li>{{e.school_name}}</li>
+            <li>{{e.city}}</li>
+            <li>{{e.state}}</li>
+            <li>{{e.major}}</li>
+            <li>{{e.year_start}}-{{e.year_graduated}}</li>
+        </ul>
+    {% endfor %}
+
+    {% for j in jobs %}
+        <ul>
+            <li>{{j.job_title}}</li>
+            <li>{{j.employer}}</li>
+            <li>{{j.year_started}}-{{j.year_end}}</li>
+            <li>{{j.job_description}}</li>
+        </ul>
+    {% endfor %}
+
+    {% for s in skills %}
+        <ul>
+            <li>{{s.skill_name}}</li>
+        </ul>
+    {% endfor %}
+
+    {% for c in certs %}
+        <ul>
+            <li>{{c.cert_name}}</li>
+            <li>{{c.cert_url}}</li>
+            <li>{{c.cert_author}}</li>
+            <li>{{c.year_awarded}}</li>
+            <li>{{c.year_expired}}</li>
+        </ul>
+    {% endfor %}
+{% endblock content %}
