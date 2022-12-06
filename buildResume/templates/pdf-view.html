@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="text-center">
+    
+    <h1 class='test'>{{person.first_name}} {{person.last_name}}</h1>
+        <p>{{person.street}}</p>
+        <p>{{person.city}},{{person.state}} {{person.zipCode}} {{person.phone}}</p>
+        <p>{{person.email}}</p>
+    <hr>
+    </div>
+
+    <div class="text-center">
+        <h3>Education</h3>
+        <ul class='schools'>
+        {% for e in education %}
+                <li>{{e.school_name}}</li>
+                <li>{{e.year_start}}-{{e.year_graduated}}</li>
+                <li>{{e.city}}, {{e.state}}</li>
+                <li>{{e.major}}</li>
+        {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="text-center">
+        <h3>Experience</h3>
+        {% for j in jobs %}
+        <ul class='experience'>
+                <li>{{j.job_title}}</li>
+                <li>{{j.employer}}</li>
+                <li>{{j.year_started}}-{{j.year_end}}</li>
+                <li>{{j.job_description}}</li>
+            </ul>
+                {% endfor %}
+    </div>
+    <hr>
+
+    <div class="text-center">
+        <h3>Skills</h3>
+        <ul class='skills'>
+            {% for s in skills %}
+                <li>{{s.skill_name}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="text-center">
+        <h3>Certificates</h3>
+        <ul class='certs'>
+            {% for c in certs %}
+                <li>{{c.cert_name}}</li>
+                <li>{{c.cert_url}}</li>
+                <li>{{c.cert_author}}</li>
+                <li>{{c.year_awarded}}-{{c.year_expired}}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+<a href="{% url 'download-pdf' %}" class="btn btn-primary">Download Resume</a>
+{% endblock content %}

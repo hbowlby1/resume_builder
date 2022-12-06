@@ -8,6 +8,8 @@ class Person(models.Model):
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
     zipCode = models.CharField(max_length=12)
+    email = models.EmailField()
+    phone = models.CharField(max_length=12)
 
     def __str__(self):
         return f"{self.last_name} ({self.id})"

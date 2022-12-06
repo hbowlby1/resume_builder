@@ -1,0 +1,35 @@
+.schools{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.schools li{
+    list-style: none;
+}
+
+.experience{
+    display: inline-grid;
+    grid-template-columns: 1fr;
+}
+
+.experience li{
+    list-style: none;
+}
+
+.skills{
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.skills li{
+    list-style: none;
+}
+
+.certs li{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.certs li{
+    list-style: none;
+}

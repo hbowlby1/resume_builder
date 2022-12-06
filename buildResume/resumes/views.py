@@ -3,9 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from django.views.generic import TemplateView
 
-from django_weasyprint import WeasyTemplateResponseMixin
-from django_weasyprint.views import WeasyTemplateResponse
-from django_weasyprint.utils import django_url_fetcher
+from weasyprint import HTML, CSS
+from django.template.loader import get_template
+from django.conf import settings
 
 from .models import (Person, Education, Jobs, Skills, Certificates)
 from .forms import (SchoolForm, PersonForms, JobForm, SkillForm, CertForm)
@@ -175,8 +175,14 @@ def getUserData(request, pk):
         'skills': getSkills,
         'certs': getCerts
     }
-    # for loops that run through the objects and saves their values
-    #education
     
-    return render(request, 'pdf-create.html', context)
+    return render(request, 'pdf-view.html', context)
     
+def pdf_generation(request):
+    html_template = get_template('pdf-view.html').render()
+    pdf_file = HTML(html_template).write_pdf(
+        stylesheets=[CSS(settings.STATIC_ROOT + 'css/styles.css')]
+        )
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="resume.pdf"'
+    return response

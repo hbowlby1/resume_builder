@@ -10,7 +10,8 @@ createSkills,
 createSkillForm,
 createCert,
 createCertForm,
-getUserData,)
+getUserData,
+pdf_generation,)
 
 from wkhtmltopdf.views import PDFTemplateView
 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('htmx/create-cert-form', createCertForm, name='create-cert-form'),
 
     #PDF generation
-    path('<int:pk>/pdf/create', getUserData, name='create-pdf')
+    path('<int:pk>/pdf/create', getUserData, name='create-pdf'),
+    path('download-pdf/', pdf_generation, name='download-pdf'),
 
 ]
