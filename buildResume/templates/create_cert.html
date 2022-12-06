@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
 {% block content %}
 <h1>Add any certificates you may have</h1>
 <p>If you have none go ahead and click save certificate</p>
@@ -11,5 +15,8 @@
         
         <div id='certForm'></div>
     </form>
-    {% comment %} create url button for developing pdf {% endcomment %}
+    <a href="{% url 'create-pdf' person.id %}" class="btn btn-primary">Create Resume</a>
 {% endblock content %}
+{% block footer %}
+{% include 'partials/footer.html' %}
+{% endblock footer %}

@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Builder | Harrison Bowlby</title>
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
-    <link href="{% static './bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     {% block extra_css %}
     
     {% endblock extra_css %}
@@ -20,7 +19,9 @@
         
         {% endblock content %}
         
-        {% include 'partials/footer.html' %}
+        {% block footer %}
+
+        {% endblock footer %}
         <script src="{% static 'js/getYear.js' %}"></script>
         <script src="{% static './bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     </div>

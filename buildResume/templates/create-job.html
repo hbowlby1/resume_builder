@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block extra_css %}
+<link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+{% endblock extra_css %}
 {% block content %}
 <h1>Add your Job Experience</h1>
 <p>If you have none go ahead and click save job</p>
@@ -14,3 +16,6 @@
     </form>
     <a href="{% url 'create-skill' person.id %}">Add Skills</a>
 {% endblock content %}
+{% block footer %}
+{% include 'partials/footer.html' %}
+{% endblock footer %}

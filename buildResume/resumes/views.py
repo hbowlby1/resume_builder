@@ -2,10 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.views.generic import TemplateView
-
-from weasyprint import HTML, CSS
-from django.template.loader import get_template
 from django.conf import settings
+
+from django_weasyprint import WeasyTemplateView
 
 from .models import (Person, Education, Jobs, Skills, Certificates)
 from .forms import (SchoolForm, PersonForms, JobForm, SkillForm, CertForm)
@@ -159,30 +158,38 @@ def createCertForm(request):
     return render(request, 'partials/cert_form.html', context)
 
 # pdf generation
-def getUserData(request, pk):
-    #get all of the objects and connect
-    getPerson = Person.objects.get(id=pk)
-    getEducation = Education.objects.filter(person=getPerson).values()
-    getJobs = Jobs.objects.filter(person=getPerson).values()
-    getSkills = Skills.objects.filter(person=getPerson).values()
-    getCerts = Certificates.objects.filter(person=getPerson).values()
+# def getUserData(request, pk):
+#     #get all of the objects and connect
+#     getPerson = Person.objects.get(id=pk)
+#     getEducation = Education.objects.filter(person=getPerson).values()
+#     getJobs = Jobs.objects.filter(person=getPerson).values()
+#     getSkills = Skills.objects.filter(person=getPerson).values()
+#     getCerts = Certificates.objects.filter(person=getPerson).values()
 
-    #context that holds all of the user data
-    context = {
-        'person': getPerson,
-        'education': getEducation,
-        'jobs': getJobs,
-        'skills': getSkills,
-        'certs': getCerts
-    }
+#     #context that holds all of the user data
+#     context = {
+#         'person': getPerson,
+#         'education': getEducation,
+#         'jobs': getJobs,
+#         'skills': getSkills,
+#         'certs': getCerts
+#     }
     
-    return render(request, 'pdf-view.html', context)
+#     return render(request, 'pdf-view.html', context)
     
-def pdf_generation(request):
-    html_template = get_template('pdf-view.html').render()
-    pdf_file = HTML(html_template).write_pdf(
-        stylesheets=[CSS(settings.STATIC_ROOT + 'css/styles.css')]
-        )
-    response = HttpResponse(pdf_file, content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="resume.pdf"'
-    return response
+class PDFGenerator(WeasyTemplateView):
+    template_name = 'pdf-view.html'
+    pdf_stylesheets = [
+        settings.STATIC_ROOT + '/css/styles.css'
+    ]
+    def get_context_data(self, *args, **kwargs):
+        context = super(PDFGenerator, self).get_context_data(**kwargs)
+        context['person'] = Person.objects.get(id=kwargs['pk'])
+        context['education'] = Education.objects.filter(person=context['person']).values()
+        context['jobs'] = Jobs.objects.filter(person=context['person']).values()
+        context['skills'] = Skills.objects.filter(person=context['person']).values()
+        context['certs'] = Certificates.objects.filter(person=context['person']).values()
+        return context
+
+    def get_pdf_filename(self):
+        return
