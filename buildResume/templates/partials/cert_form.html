@@ -3,6 +3,6 @@
     <form method="post">
         {% csrf_token %}
         {{certForm.as_p}}
-        <button type="submit" hx-post=".">Save Certificate</button>
+        <button type="submit" hx-post="." class='btn btn-success'>Save Certificate</button>
     </form>
 </div>

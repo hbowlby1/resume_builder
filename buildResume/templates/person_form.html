@@ -2,13 +2,15 @@
 {% load static %}
 {% block extra_css %}
 <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/person.css' %}">
 {% endblock extra_css %}
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
         {{personForm.as_p}}
 
-        <input type="submit" value="Save Information">
+        <input type="submit" value="Save Information" class="btn btn-primary button">
     </form>
 {% endblock content %}
 {% block footer %}

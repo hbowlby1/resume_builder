@@ -3,6 +3,6 @@
     <form method="post">
         {% csrf_token %}
         {{jobForm.as_p}}
-        <button type="submit" hx-post=".">Save Job</button>
+        <button type="submit" hx-post="." class="btn btn-success">Save Job</button>
     </form>
 </div>

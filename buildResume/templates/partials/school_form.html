@@ -1,8 +1,8 @@
-<div hx-target="this" hx-swap="outerHTML">
+<div hx-target="this" hx-swap="outerHTML" class='school-forms'>
 
     <form method="post">
         {% csrf_token %}
         {{schoolForm.as_p}}
-        <button type="submit" hx-post=".">Save School</button>
+        <button type="submit" hx-post="." class="btn btn-success">Save School</button>
     </form>
 </div>

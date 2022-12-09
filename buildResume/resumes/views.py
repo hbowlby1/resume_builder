@@ -42,7 +42,7 @@ def createSchool(request, pk):
           school = schoolForm.save(commit=False)
           school.person = person
           school.save()
-          return HttpResponse('\nschool saved')
+          return HttpResponse()
         else:
             return render(request, "partials/school_form.html", context={
                 "schoolForm": schoolForm

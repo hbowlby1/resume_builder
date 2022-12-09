@@ -13,6 +13,13 @@ class PersonForms(forms.ModelForm):
             'state',
             'zipCode',
         ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+        self.fields['zipCode'].label = 'Zip'
 
 class SchoolForm(forms.ModelForm):
     class Meta:
@@ -25,6 +32,12 @@ class SchoolForm(forms.ModelForm):
             'year_start',
             'year_graduated',
         )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
 
 class JobForm(forms.ModelForm):
     class Meta:
@@ -36,14 +49,24 @@ class JobForm(forms.ModelForm):
             'year_end',
             'job_description',
         )
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
 class SkillForm(forms.ModelForm):
     class Meta:
         model = Skills
         fields = (
             'skill_name',
         )
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
 class CertForm(forms.ModelForm):
     class Meta:
         model = Certificates
@@ -54,3 +77,9 @@ class CertForm(forms.ModelForm):
             'year_awarded',
             'year_expired',
         )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
