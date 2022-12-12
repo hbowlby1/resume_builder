@@ -1,34 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/resume-styles.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
-<div class="text-center">
+<div class="top-box"></div>
+<div class="person-box">
     
-    <h1 class='test'>{{person.first_name}} {{person.last_name}}</h1>
-        <p>{{person.street}}</p>
-        <p>{{person.city}},{{person.state}} {{person.zipCode}} {{person.phone}}</p>
-        <p>{{person.email}}</p>
-    <hr>
+    <h1 class='name'>{{person.first_name}} {{person.last_name}}</h1>
+        <div class="info-sec">
+            <p>A: {{person.street}} {{person.city}}, {{person.state}} {{person.zipCode}} | P: {{person.phone}} | E: {{person.email}}</p>
+        </div>
     </div>
 
-    <div class="text-center">
-        <h3>Education</h3>
-        <ul class='schools'>
+    <div class="school-section">
+        <div class='title'><p>Education</p></div>
         {% for e in education %}
-                <li>{{e.school_name}}</li>
-                <li>{{e.year_start}}-{{e.year_graduated}}</li>
-                <li>{{e.city}}, {{e.state}}</li>
-                <li>{{e.major}}</li>
+        <ul class='schools'>
+                <li>{{e.school_name}} | {{e.city}}, {{e.state}} | {{e.year_start}}-{{e.year_graduated}}</li>
+                <li>Major: {{e.major}}</li>
+            </ul>
         {% endfor %}
-        </ul>
 
     </div>
 
     <div class="text-center">
-        <h3>Experience</h3>
+        <div class="title"><p>Experience</p></div>
         {% for j in jobs %}
         <ul class='experience'>
                 <li>{{j.job_title}}</li>
@@ -38,19 +36,18 @@
             </ul>
                 {% endfor %}
     </div>
-    <hr>
 
     <div class="text-center">
-        <h3>Skills</h3>
+        <div class="title"><p>Skills</p></div>
         <ul class='skills'>
             {% for s in skills %}
-                <li>{{s.skill_name}}</li>
+                <span>{{s.skill_name}}</span>
             {% endfor %}
         </ul>
     </div>
 
     <div class="text-center">
-        <h3>Certificates</h3>
+        <div class="title"><p>Certificates</p></div>
         <ul class='certs'>
             {% for c in certs %}
                 <li>{{c.cert_name}}</li>
@@ -61,5 +58,6 @@
         </ul>
 
     </div>
+
 </div>
 {% endblock content %}

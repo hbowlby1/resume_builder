@@ -1,0 +1,19 @@
+.job-button{
+    margin-top: 10px;
+}
+
+.school-forms{
+    animation: slide-in 250ms;
+    animation-timing-function: linear;
+
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(-100%);
+        z-index: 0;
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
