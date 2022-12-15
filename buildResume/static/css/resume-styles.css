@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Serif:opsz@8..144&display=swap');
 
+
 h1,h2,h3,h4,h5,h6{
     font-family: "Open Sans", sans-serif;
 }
@@ -8,7 +9,7 @@ p, a, li{
     font-family: 'Roboto', serif;
     font-size: 16px;
     list-style: none;
-    line-height: 1;
+    line-height: 1.25;
 }
 
 .person-box{
@@ -25,11 +26,13 @@ p, a, li{
 .name{
     color: #838383;
     position: relative;
-    top: 60px;
+    top: 20px;
+    text-align: center
 }
 
 .info-sec{
     margin-top: 60px;
+    text-align: center;
 }
 
 .title{
@@ -47,6 +50,6 @@ p, a, li{
     border-bottom: #F69954 3px solid;
 }
 
-.school-section{
-    
+.hang-indent{
+    margin-left: 10px;
 }

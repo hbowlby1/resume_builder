@@ -18,8 +18,9 @@
         <div class='title'><p>Education</p></div>
         {% for e in education %}
         <ul class='schools'>
-                <li>{{e.school_name}} | {{e.city}}, {{e.state}} | {{e.year_start}}-{{e.year_graduated}}</li>
-                <li>Major: {{e.major}}</li>
+                <li><strong>{{e.school_name}}</strong> - {{e.year_start}}-{{e.year_graduated}}</li>
+                <li class="hang-indent">{{e.city}}, {{e.state}}</li>
+                <li class="hang-indent">Major: {{e.major}}</li>
             </ul>
         {% endfor %}
 
@@ -29,10 +30,9 @@
         <div class="title"><p>Experience</p></div>
         {% for j in jobs %}
         <ul class='experience'>
-                <li>{{j.job_title}}</li>
-                <li>{{j.employer}}</li>
-                <li>{{j.year_started}}-{{j.year_end}}</li>
-                <li>{{j.job_description}}</li>
+                <li><strong>{{j.job_title}}</strong> - {{j.year_started}}-{{j.year_end}}</li>
+                <li class="hang-indent">{{j.employer}}</li>
+                <li class="hang-indent">{{j.job_description}}</li>
             </ul>
                 {% endfor %}
     </div>
@@ -41,7 +41,7 @@
         <div class="title"><p>Skills</p></div>
         <ul class='skills'>
             {% for s in skills %}
-                <span>{{s.skill_name}}</span>
+                <span>{{s.skill_name}} - </span>
             {% endfor %}
         </ul>
     </div>
@@ -50,10 +50,9 @@
         <div class="title"><p>Certificates</p></div>
         <ul class='certs'>
             {% for c in certs %}
-                <li>{{c.cert_name}}</li>
-                <li>{{c.cert_url}}</li>
-                <li>{{c.cert_author}}</li>
-                <li>{{c.year_awarded}}-{{c.year_expired}}</li>
+                <li><strong>{{c.cert_name}}</strong> - {{c.year_awarded}}-{{c.year_expired}}</li>
+                <li class="hang-indent">{{c.cert_url}}</li>
+                <li class="hang-indent">{{c.cert_author}}</li>
             {% endfor %}
         </ul>
 
