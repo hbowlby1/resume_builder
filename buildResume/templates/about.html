@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}
+<link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock extra_css %} {% block content %}
+<h1>Build a Free Resume</h1>
+
+<div class="aligner">
+  <h1>About Pyresume</h1>
+  <p>
+    Pyresume was a project I always thought about building but never got around to until September 2022. I had it written down in my idea journal and even started it out using MERN stack. However, I randomly wanted to learn Django, so I made this project using Django. By no means is it as cool as other free resume building applications but to me it's fantastic. It's also an ongoing project for me to work on hopefully for the rest of time. I'm also planning to completely redo the frontend and implementing React.
+  </p>
+  <p>In the future I plan to add way more templates for my users and adding little tweaks as well. At the moment, I am pursuing another project that I have written down. This future project in a way will go hand in hand with the website. I'm estimating it to be up and running in 4 months or sooner.</p>
+  <p>If you want to see my other projects feel free to check out my (terrible looking) <a href="https://www.harrisonbowlby.com">portfolio</a> that shows my other projects I've worked on.</p>
+</div>
+
+<p>Nav bar is coming soon</p>
+<a href="{% url 'home' %}" class="btn btn-primary">Take me home</a>
+{% endblock content %} {% block footer %} {% include 'partials/footer.html' %}
+{% endblock footer %}

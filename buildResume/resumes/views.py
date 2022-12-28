@@ -14,6 +14,9 @@ from .forms import (SchoolForm, PersonForms, JobForm, SkillForm, CertForm)
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
+class AboutPageView(TemplateView):
+    template_name = 'about.html'
+
 def createPerson(request):
     personForm = PersonForms(request.POST or None)
 
