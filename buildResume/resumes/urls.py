@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import (HomePageView, 
+from .views import (HomePageView,
+AboutPageView, 
 createSchool, 
 createPerson,
 createSchoolForm,
@@ -16,6 +17,7 @@ from wkhtmltopdf.views import PDFTemplateView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
+    path('about/', AboutPageView.as_view(), name='about'),
     path('person/', createPerson, name='person'),
     path('person/<int:pk>/school/', createSchool, name='create-school'),
     path('person/<int:pk>/jobs/', createJob, name='create-job'),

@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from django.conf import settings
 
 from django_weasyprint import WeasyTemplateView
+import logging
 
 from .models import (Person, Education, Jobs, Skills, Certificates)
 from .forms import (SchoolForm, PersonForms, JobForm, SkillForm, CertForm)
@@ -12,6 +13,9 @@ from .forms import (SchoolForm, PersonForms, JobForm, SkillForm, CertForm)
 # Create your views here.
 class HomePageView(TemplateView):
     template_name = 'home.html'
+
+class AboutPageView(TemplateView):
+    template_name = 'about.html'
 
 def createPerson(request):
     personForm = PersonForms(request.POST or None)
@@ -180,7 +184,7 @@ def createCertForm(request):
 class PDFGenerator(WeasyTemplateView):
     template_name = 'pdf-view.html'
     pdf_stylesheets = [
-        settings.STATIC_ROOT + '/css/styles.css'
+        settings.STATIC_ROOT + '/css/resume-styles.css',
     ]
     def get_context_data(self, *args, **kwargs):
         context = super(PDFGenerator, self).get_context_data(**kwargs)
